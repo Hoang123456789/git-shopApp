@@ -1,0 +1,14 @@
+ul.demo {
+  list-style-type: none;
+  display: flex;
+  flex-direction: row;
+  background: rgb(219, 219, 235);
+  align-items: center;
+  justify-content: space-evenly;
+  
+
+}
+.header{
+  background-color: 
+  #a7ffeb;
+}
