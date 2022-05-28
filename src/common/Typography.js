@@ -71,7 +71,7 @@ export const theme = createTheme({
       boderRadius: "0px",
     },
     footer: {
-      main: "#fff",
+      main: "#e4e6eb",
     },
   },
   TypographyFooter: {

@@ -4,7 +4,7 @@ import { theme } from "../../common/Typography";
 import Footer from "../../components/footer/footer";
 import Header from "../../components/headers/header";
 import Button from "@mui/material/Button";
-import { Link, Navigate, Outlet, useNavigate } from "react-router-dom";
+import { Link, Outlet, useNavigate } from "react-router-dom";
 import { withStyles } from "@material-ui/styles";
 import { Dialog, DialogTitle, TextField, Typography } from "@mui/material";
 import { styles } from "../../common/withStyles";
@@ -13,8 +13,9 @@ import axios from "axios";
 //import callApi from "../../api/apiCaller";
 function Login(props) {
   const navigate = useNavigate();
-  const isLoggedIn = localStorage.getItem("name");
+ // const isLoggedIn = localStorage.getItem("name");
   const [open, setOpen] = React.useState(false);
+
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -51,28 +52,28 @@ function Login(props) {
         localStorage.setItem("name", data.UserName);
         let x = res.status;
         if (x === 200) {
-          handleClickOpen()
-
+          handleClickOpen();
           setTimeout(() => {
             handleClose();
-           navigate("/");
+            navigate("/");
           }, 1000);
 
           clearTimeout(
             setTimeout(() => {
               handleClose();
             }, 1000)
-          );
+          )
         }
       })
       .catch((err) => {
-        console.log("is not user",err);
+        console.log("email không đúng", err);
       });
   };
   return (
     <ThemeProvider theme={theme}>
-      {isLoggedIn != null && <Navigate to="/" />}
+      {/* {isLoggedIn != null && <Navigate to="/" />} */}
       <div className="logins">
+        
         <Dialog
           open={open}
           onClose={handleClose}

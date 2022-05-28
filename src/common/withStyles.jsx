@@ -150,36 +150,18 @@ export const styles = {
     width: "150px",
     height: "160px",
   },
-
-  product: {
-    display: "flex",
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-evenly",
-    background: "#fff",
-    width: "80%",
-    height: "300px",
-    borderLeft: "1px solid #555",
-    borderRight: "1px solid #555",
-    borderTop: "1px solid #555",
-    margin: "0 0 0 125px",
-    borderRadius: "5 5 0 0",
-    padding: 5,
+  product:{
+     margin:'20px 0 20px 100px'
   },
   productRight: {
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "flexStart",
+    
   },
   productImgDetail: {
-    width: "170px",
-    height: "190px",
+    width: "300px",
+    height: "300px",
   },
   productLeft: {
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    justifyContent: "center",
+    
   },
   avatars: {
     display: "flex",

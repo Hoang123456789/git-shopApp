@@ -4,81 +4,44 @@ import { withStyles } from "@material-ui/styles";
 import { styles } from "../../common/withStyles";
 import { ThemeProvider } from "@mui/material/styles";
 import * as React from "react";
-import axios from "axios";
-//import ProductBody from "./productBody/productBody";
 import { theme } from "../../common/Typography";
-import { Typography } from "@mui/material";
+import { Grid, Typography } from "@mui/material";
 import { useSelector } from "react-redux";
 import { product$ } from "../../redux/selector";
- 
-
-
-
-
-
 
 function ProductDetails(props) {
-  const productIdreturn = useSelector(product$);
-  console.log(productIdreturn);
-
-  const [posts, setPosts] = React.useState({ data: [] });
-
-  React.useEffect(() => {
-    axios({
-      method: "GET",
-      url: `https://js-post-api.herokuapp.com/api/products?id=${productIdreturn}`,
-      data: null,
-    })
-      .then((posts) => {
-        setPosts(posts);
-        console.log(posts.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, [productIdreturn]);
-
+  const pRdt = useSelector(product$);
+  console.log(pRdt);
+  JSON.stringify()
   return (
     <ThemeProvider theme={theme}>
       <div>
         <Header />
 
-        {posts.data.map((post) => {
-          return (
-            <div key={post.id} className={props.classes.product}>
-              <div className={props.classes.productLeft}>
-                <Typography variant="h1">{post.name}</Typography>
+        <Grid  container  className={props.classes.product}>
+          <Grid item xs={4}  className={props.classes.productLeft}>
+            <Typography variant="h1" color='primary'>{pRdt.name}</Typography>
 
-                <img
-                  className={props.classes.productImgDetail}
-                  src={post.images[0]}
-                  alt="ghế nhân viên"
-                />
-              </div>
-              <div className={props.classes.productRight}>
-                <Typography variant="h3"> - Mã hàng: {post.id} MSI </Typography>
-                <Typography variant="h3">
-                  {" "}
-                  - GIÁ: {post.salePrice} vnd
-                </Typography>
+            <img
+              
+              className={props.classes.productImgDetail}
+              src={pRdt.images}
+              alt="ghế nhân viên"
+            />
+          </Grid>
+          <Grid  item xs={3} className={props.classes.productRight}>
+            <Typography color='secondary' variant="h2"> - Mã hàng: {pRdt.id} MSI </Typography>
+            <Typography variant="poster"> - GIÁ: {pRdt.salePrice} vnd</Typography><br/>
 
-                {/* <img
-                  src="http://noithathoaphat.com.vn/product_images/uploaded_images/tuvanbanhang.jpg"
-                  alt=""
-                />
-                <img
-                  src="http://noithathoaphat.com.vn/images/services.jpg"
-                  alt=""
-                /> */}
-                <p>{post.shortDescription}</p>
-              </div>
-            </div>
-          );
-        })}
+            <Typography variant="h3" color='primary'>   -FreeShip: miễn phí ship khu vực HCM</Typography> <br/>
+            <Typography variant="h3" color='primary'> - Mô tả:{pRdt.shortDescription}</Typography>
 
-        {/* <div>
-          <ProductBody  />
-        </div> */}
+          </Grid>
+        </Grid>
+        <Grid>
+           
+        </Grid>
+
         <Footer />
       </div>
     </ThemeProvider>

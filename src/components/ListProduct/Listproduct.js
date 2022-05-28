@@ -6,7 +6,7 @@ import { ThemeProvider } from "@mui/material/styles";
 import axios from "axios";
 import { Button } from "@material-ui/core";
 import { useDispatch, useSelector } from "react-redux";
-import ListProductSlice from "./ListProductSlice";
+import  { getProducts } from "./ListProductSlice";
 import { theme } from "../../common/Typography";
 import { Dialog, DialogTitle, Typography } from "@mui/material";
 import { productFilter$ } from "../../redux/selector";
@@ -92,13 +92,14 @@ function Products(props) {
               <Typography
                 className={props.classes.Details}
                 onClick={() => {
-                  console.log(post.id);
-                  navigate("/productDetails");
-                  dispatch(ListProductSlice.actions.products({ id: post.id }))
                   window.scroll({
                     top: 0,
-                    behavior: "smooth",
+                      behavior: "smooth",
                   });
+                  console.log(post.id);
+                  navigate("/productDetails");
+                  dispatch(getProducts({ id: post.id }))
+                   
                 }}
                 variant="poster"
               >
@@ -107,7 +108,7 @@ function Products(props) {
               <Button               
                 onClick={()=>{               
                   handleClickOpen()
-                  dispatch(ListProductSlice.actions.products({ id: post.id }))
+                  dispatch(getProducts({ id: post.id }))
                 }}
                 variant="contained"
                 className={props.classes.cart}
