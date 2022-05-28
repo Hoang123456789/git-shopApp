@@ -61,11 +61,7 @@ function Header(props) {
                   <Typography variant="h2"> Đăng nhập</Typography>
                 </Button>
               </Link>
-            </li>}
-           
-
-
-
+            </li>}         
             {isLoggedIn != null && <Model />}
           </ul>
         </nav>

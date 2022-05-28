@@ -4,19 +4,20 @@ import { theme } from "../../common/Typography";
 import Footer from "../../components/footer/footer";
 import Header from "../../components/headers/header";
 import Button from "@mui/material/Button";
-import { Link, Outlet } from "react-router-dom";
+import { Link, Navigate, Outlet, useNavigate } from "react-router-dom";
 import { withStyles } from "@material-ui/styles";
 import { Dialog, DialogTitle, TextField, Typography } from "@mui/material";
 import { styles } from "../../common/withStyles";
 import "./login.css";
-//import axios from "axios";
-import callApi from "../../api/apiCaller";
+import axios from "axios";
+//import callApi from "../../api/apiCaller";
 function Login(props) {
- // const navigate = useNavigate()
+  const navigate = useNavigate();
+  const isLoggedIn = localStorage.getItem("name");
   const [open, setOpen] = React.useState(false);
-  // const handleClickOpen = () => {
-  //   setOpen(true);
-  // };
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
   const handleClose = () => {
     setOpen(false);
   };
@@ -26,76 +27,51 @@ function Login(props) {
     UserName: "",
   });
   const handleEmail = (e) => {
+    console.log(e.target.value);
     setData({ ...data, email: e.target.value });
   };
   const handlePassword = (e) => {
+    console.log(e.target.value);
     setData({ ...data, password: e.target.value });
   };
   const handleUserName = (e) => {
+    console.log(e.target.value);
     setData({ ...data, UserName: e.target.value });
   };
   const hanleLogin = () => {
-   callApi("users/login", "POST", {
-      email: data.email,
-      password: data.password,
+    axios({
+      method: "POST",
+      url: "http://localhost:8000/users/login",
+      data: {
+        email: data.email,
+        password: data.password,
+      },
     })
+      .then((res) => {
+        localStorage.setItem("name", data.UserName);
+        let x = res.status;
+        if (x === 200) {
+          handleClickOpen()
 
+          setTimeout(() => {
+            handleClose();
+           navigate("/");
+          }, 1000);
 
-
-    //.then(() => {
-    //   console.log("ok");
-    //   localStorage.setItem("name", data.UserName);
-
-    //   handleClickOpen();
-    //   setTimeout(() => {
-    //     handleClose()
-    //     navigate("/")
-    //   }, 1000);
-
-    //   clearTimeout(
-    //     setTimeout(() => {
-    //       handleClose();
-    //     }, 1000)
-    //   );
-    // })
-
-
-
-
-
-
-
-
-    // axios({
-    //   method: "POST",
-    //   url: "http://localhost:8000/users/login",
-    //   data: {
-    //     email: data.email,
-    //     password: data.password,
-    //   },
-    // })
-      // .then(() => {
-      //   console.log("ok");
-      //   localStorage.setItem("name", data.UserName);
-
-      //   handleClickOpen();
-      //   setTimeout(() => {
-      //     handleClose()
-      //     navigate("/")
-      //   }, 1000);
-
-      //   clearTimeout(
-      //     setTimeout(() => {
-      //       handleClose();
-      //     }, 1000)
-      //   );
-      // })
-    //   .catch((err) => {
-    //     console.log("ngu");
-    //   });
+          clearTimeout(
+            setTimeout(() => {
+              handleClose();
+            }, 1000)
+          );
+        }
+      })
+      .catch((err) => {
+        console.log("is not user",err);
+      });
   };
   return (
     <ThemeProvider theme={theme}>
+      {isLoggedIn != null && <Navigate to="/" />}
       <div className="logins">
         <Dialog
           open={open}
