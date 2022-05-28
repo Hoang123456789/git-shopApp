@@ -61,11 +61,6 @@ function ForgotPassword(props) {
         }, 1000)
       );
 
-
-
-
-
-
         }
       })
       .catch((err) => {
