@@ -5,11 +5,15 @@ import { styles } from "../../common/withStyles";
 import { ThemeProvider } from "@mui/material/styles";
 import * as React from "react";
 import { theme } from "../../common/Typography";
-import { Grid, Typography } from "@mui/material";
+import { Button, Grid, Typography } from "@mui/material";
 import { useSelector } from "react-redux";
 import { product$ } from "../../redux/selector";
+import { useNavigate } from "react-router-dom";
 
 function ProductDetails(props) {
+  const navigate =useNavigate()
+
+
   const pRdt = useSelector(product$);
   console.log(pRdt);
   JSON.stringify()
@@ -31,17 +35,15 @@ function ProductDetails(props) {
           </Grid>
           <Grid  item xs={3} className={props.classes.productRight}>
             <Typography color='secondary' variant="h2"> - Mã hàng: {pRdt.id} MSI </Typography>
-            <Typography variant="poster"> - GIÁ: {pRdt.salePrice} vnd</Typography><br/>
+            <Typography variant="poster"> - GIÁ: {pRdt.salePrice} (vnđ)</Typography><br/>
 
             <Typography variant="h3" color='primary'>   -FreeShip: miễn phí ship khu vực HCM</Typography> <br/>
             <Typography variant="h3" color='primary'> - Mô tả:{pRdt.shortDescription}</Typography>
-
+            <p></p>
+            <Button variant="contained"  onClick={()=> navigate( "/product") }> Xem tất cả sản phẩm</Button>
           </Grid>
         </Grid>
-        <Grid>
-           
-        </Grid>
-
+      
         <Footer />
       </div>
     </ThemeProvider>

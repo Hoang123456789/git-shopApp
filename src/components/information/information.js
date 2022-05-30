@@ -55,7 +55,8 @@ function Information(props) {
     <ThemeProvider theme={theme}>
       <div className={props.classes.imgs}>
         <KeyboardDoubleArrowLeftSharpIcon
-          color="background"
+
+          color='secondary'
           onClick={handleChangeImageLeft}
         />
         {arr.map((prev) => {
@@ -66,7 +67,7 @@ function Information(props) {
           );
         })}
         <KeyboardDoubleArrowRightSharpIcon
-          color="background"
+          color='secondary'
           onClick={handleChangeImageRight}
         />
       </div>

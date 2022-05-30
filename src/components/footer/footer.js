@@ -32,7 +32,9 @@ function Footer(props) {
         />
 
         <div className={props.classes.information}>
-          <FileUploadIcon
+          <FileUploadIcon 
+           
+           color="primary"
             fontSize="large"
             onClick={handleReturn}
             className={props.classes.uploadIcon}
