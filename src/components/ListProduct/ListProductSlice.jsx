@@ -1,4 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { API_URl_HEROKU } from "../../constant/Config";
 
 
 //import axios from "axios";
@@ -21,11 +22,13 @@ export const todoSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      .addCase(getProducts.pending, (state, action) => {
+      .addCase(getProducts.pending, (state, action) => {          
         console.log(action, "đang chờ");
+       
       })
       .addCase(getProducts.fulfilled, (state, action) => {
-        console.log(action.payload, "thành công");
+
+        console.log(process.env, "thành công");
         action.payload.map((res) => {
           state.id = res.id;
           state.images = res.images[0];
@@ -37,7 +40,7 @@ export const todoSlice = createSlice({
           return res;
         });
       })
-      .addCase(getProducts.rejected, (state, action) => {
+      .addCase(getProducts.rejected, (state, action) => {            
         console.log(action, "thất bại");
       });
   },
@@ -47,7 +50,7 @@ export const getProducts = createAsyncThunk(
   "products/getProducts",
   async (todo) => {
     const res = await fetch(
-      `https://js-post-api.herokuapp.com/api/products?id=${todo.id}`
+      `${API_URl_HEROKU}?id=${todo.id}`
     );
     const data = await res.json();
 

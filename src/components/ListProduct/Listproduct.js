@@ -1,17 +1,19 @@
 import * as React from "react";
 import { Outlet, useNavigate } from "react-router-dom";
 import { withStyles } from "@material-ui/styles";
-import { styles } from "../../common/withStyles";
 import { ThemeProvider } from "@mui/material/styles";
-import axios from "axios";
 import { Button } from "@material-ui/core";
 import { useDispatch, useSelector } from "react-redux";
-import  { getProducts } from "./ListProductSlice";
-import { theme } from "../../common/Typography";
 import { Dialog, DialogTitle, Typography } from "@mui/material";
+import HighlightOffIcon from "@mui/icons-material/HighlightOff";
+
+import { getProducts } from "./ListProductSlice";
+import { styles } from "../../common/withStyles";
+import { theme } from "../../common/Typography";
 import { productFilter$ } from "../../redux/selector";
 import useDebounce from "../../hooks/useDebounce";
-import HighlightOffIcon from '@mui/icons-material/HighlightOff';
+import {  requestProduct } from "../../constant/Config";
+
 function Products(props) {
   const [open, setOpen] = React.useState(false);
   const dispatch = useDispatch();
@@ -20,17 +22,20 @@ function Products(props) {
   const productFilter = useSelector(productFilter$);
   const debounced = useDebounce(productFilter, 800);
   React.useEffect(() => {
-    axios({
-      method: "GET",
-      url: `https://js-post-api.herokuapp.com/api/products?name_like=${debounced}`,
-      data: null,
-    })
+    requestProduct({
+        method: "GET",
+        url: `?name_like=${debounced}`,
+        data: null,
+      })
+      // axios.get(`https://js-post-api.herokuapp.com/api/products`, {
+      //   params: {q:debounced},
+      // })
       .then((res) => {
-       console.log(res);   
-        setPosts(res);  
+        console.log(res);
+        setPosts(res);
       })
       .catch((err) => {
-        console.log(err);
+        console.log(err); 
       });
   }, [debounced]);
   const handleClose = () => {
@@ -40,24 +45,27 @@ function Products(props) {
     setOpen(true);
   };
 
- 
   const hanldeGotoCart = () => {
     navigate("/buyProduct");
+    window.scroll({
+      top: 0,
+      behavior: "smooth",
+    });
   };
   return (
     <ThemeProvider theme={theme}>
-     <div   className={props.classes.showtabBuyProduct}>
-     <Dialog  
-     
+      <div className={props.classes.showtabBuyProduct}>
+        <Dialog
           open={open}
           onClose={handleClose}
           aria-labelledby="alert-dialog-title"
           aria-describedby="alert-dialog-description"
-        > 
-           <Typography variant="h2"  color="secondary">Thành công </Typography>
-          <DialogTitle id="alert-dialog-title"  >
+        >
+          <Typography variant="h2" color="secondary">
+            Thành công{" "}
+          </Typography>
+          <DialogTitle id="alert-dialog-title">
             Đã thêm sản phẩm vào giỏ hàng
-           
           </DialogTitle>
           <Button
             className={props.classes.showtabBuyButton}
@@ -66,13 +74,14 @@ function Products(props) {
             onClick={hanldeGotoCart}
           >
             xem giở hàng
-          </Button>    
-          <HighlightOffIcon  className={props.classes.showtabBuyIcon}   onClick={handleClose} />
-          
+          </Button>
+          <HighlightOffIcon
+            className={props.classes.showtabBuyIcon}
+            onClick={handleClose}
+          />
         </Dialog>
-     </div>
+      </div>
       <div className={props.classes.productItem}>
-        
         {posts.data.map((post) => {
           return (
             <div key={post.id} className={props.classes.products}>
@@ -85,7 +94,6 @@ function Products(props) {
               />
               <p> MSP:{post.id}</p>
               <Typography variant="poster">
-             
                 Giá: {post.salePrice} vnđ{" "}
               </Typography>
 
@@ -94,25 +102,24 @@ function Products(props) {
                 onClick={() => {
                   window.scroll({
                     top: 0,
-                      behavior: "smooth",
+                    behavior: "smooth",
                   });
                   console.log(post.id);
                   navigate("/productDetails");
-                  dispatch(getProducts({ id: post.id }))
-                   
+                  dispatch(getProducts({ id: post.id }));
                 }}
                 variant="poster"
               >
                 Xem chi tiết
               </Typography>
-              <Button               
-                onClick={()=>{               
-                  handleClickOpen()
-                  dispatch(getProducts({ id: post.id }))
+              <Button
+                onClick={() => {
+                  handleClickOpen();
+                  dispatch(getProducts({ id: post.id }));
                 }}
                 variant="contained"
                 className={props.classes.cart}
-              >              
+              >
                 Mua ngay
               </Button>
               <Outlet />

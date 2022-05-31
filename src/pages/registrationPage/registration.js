@@ -4,15 +4,15 @@ import Button from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
 import DialogTitle from "@mui/material/DialogTitle";
 import { ThemeProvider } from "@mui/material/styles";
-import TextField from "@mui/material/TextField";
-import axios from "axios";
 import * as React from "react";
+import TextField from "@mui/material/TextField";
 import { Link, Outlet, useNavigate } from "react-router-dom";
-//import registrationApi from "../../api/registration";
+
 import { theme } from "../../common/Typography";
 import { styles } from "../../common/withStyles";
 import Footer from "../../components/footer/footer";
 import Header from "../../components/headers/header";
+import { request } from "../../constant/Config";
 import "./registration.scss";
 
 function Registration(props) {
@@ -44,10 +44,9 @@ function Registration(props) {
     setPassWords(e.target.value);
   };
   const HanleRegistration = () => {
-    axios({
+    request({
       method: "POST",
-      url: "http://localhost:8000/users/signup",
-      // url: registrationApi.getAll,
+      url: `/users/signup`,
       data: {
         email: email,
         password: passWord,
@@ -56,18 +55,18 @@ function Registration(props) {
       .then((posts) => {
         localStorage.setItem("name", userName);
         console.log(posts);
-        handleClickOpen()
-        
+        handleClickOpen();
+
         setTimeout(() => {
           handleClose();
-          navigate("/")
+          navigate("/");
         }, 1000);
-        
+
         clearTimeout(
           setTimeout(() => {
             handleClose();
           }, 1000)
-          );
+        );
       })
 
       .catch((err) => {

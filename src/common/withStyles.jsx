@@ -147,8 +147,8 @@ export const styles = {
     borderRadius: "5px",
   },
   productImg: {
-    width: "150px",
-    height: "160px",
+    width: "100px",
+    height: "110px",
   },
   product:{
      margin:'20px 0 20px 100px'
@@ -206,6 +206,9 @@ export const styles = {
     width: 160,
   },
   buyIng:{
-    width:'100%'
+     border :' 1px solid #555',
+    width:'100%',
+    padding:'1px',
+    margin:'1px'
   }
 };

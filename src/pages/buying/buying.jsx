@@ -8,6 +8,7 @@ import { styles } from "../../common/withStyles";
 import { useSelector } from "react-redux";
 import { product$ } from "../../redux/selector";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
+
 function BuyProduct(props) {
   const pRdt = useSelector(product$);
   console.log(pRdt);
@@ -26,13 +27,19 @@ function BuyProduct(props) {
                 Mã sản phẩm
               </Typography>
             </Grid>
-            <Grid item xs={4}>
+            <Grid item xs={3}>
               <Typography variant="h2" color="primary">
                 {" "}
                 Tên sản phẩm{" "}
               </Typography>
             </Grid>
-            <Grid item xs={3}>
+
+            <Grid item xs={2}>
+              <Typography variant="h3" color="primary">
+                Hình ảnh
+              </Typography>
+            </Grid>
+            <Grid item xs={2}>
               <Typography variant="h2" color="primary">
                 {" "}
                 số lượng
@@ -63,14 +70,26 @@ function BuyProduct(props) {
                 {pRdt.id}
               </Typography>
             </Grid>
-            <Grid item xs={4}>
+            <Grid item xs={3}>
               <Typography variant="h3" color="primary">
                 {pRdt.name}
               </Typography>
             </Grid>
-            <Grid item xs={3}>
+            <Grid item xs={2}>
               <Typography variant="h3" color="primary">
-                <input type="text" />
+                <img
+                  className={props.classes.productImg}
+                  src={pRdt.images}
+                  alt=""
+                />
+              </Typography>
+            </Grid>
+            <Grid item xs={2}>
+              <Typography variant="h3" color="primary">
+               
+                <input value='1' type="text" />
+              
+                 
               </Typography>
             </Grid>
             <Grid item xs={1}>

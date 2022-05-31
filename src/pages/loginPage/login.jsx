@@ -1,19 +1,19 @@
 import * as React from "react";
 import { ThemeProvider } from "@mui/material/styles";
-import { theme } from "../../common/Typography";
+import { Link, Outlet, useNavigate } from "react-router-dom";
+import { Dialog, DialogTitle, TextField, Typography } from "@mui/material";
+import Button from "@mui/material/Button";
+import { withStyles } from "@material-ui/styles";
+
+import "./login.css";
+import { request } from "../../constant/Config";
 import Footer from "../../components/footer/footer";
 import Header from "../../components/headers/header";
-import Button from "@mui/material/Button";
-import { Link, Outlet, useNavigate } from "react-router-dom";
-import { withStyles } from "@material-ui/styles";
-import { Dialog, DialogTitle, TextField, Typography } from "@mui/material";
 import { styles } from "../../common/withStyles";
-import "./login.css";
-import axios from "axios";
-//import callApi from "../../api/apiCaller";
+import { theme } from "../../common/Typography";
+
 function Login(props) {
   const navigate = useNavigate();
- // const isLoggedIn = localStorage.getItem("name");
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
@@ -40,9 +40,9 @@ function Login(props) {
     setData({ ...data, UserName: e.target.value });
   };
   const hanleLogin = () => {
-    axios({
+    request({
       method: "POST",
-      url: "http://localhost:8000/users/login",
+      url: "/users/login",
       data: {
         email: data.email,
         password: data.password,
@@ -62,7 +62,7 @@ function Login(props) {
             setTimeout(() => {
               handleClose();
             }, 1000)
-          )
+          );
         }
       })
       .catch((err) => {
@@ -71,9 +71,7 @@ function Login(props) {
   };
   return (
     <ThemeProvider theme={theme}>
-      {/* {isLoggedIn != null && <Navigate to="/" />} */}
       <div className="logins">
-        
         <Dialog
           open={open}
           onClose={handleClose}

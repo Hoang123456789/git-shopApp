@@ -1,14 +1,14 @@
 import { Route, Routes } from "react-router-dom";
-import BuyProduct from "../page/buying/buying";
-import Buying from "../page/buying/buying";
-import Contact from "../page/contactPage/contact";
-import ForgotPassword from "../page/ForgotPassword/ForgotPassword";
-import HomePage from "../page/homePage/homePage";
-import Login from "../page/loginPage/login";
-import ProductDetails from "../page/productDt/ProductDetails";
-import PageProduct from "../page/ProductPage/ProductPage";
-import Registration from "../page/registrationPage/registration";
-import Tutorial from "../page/tutorialPage/tutorial";
+import BuyProduct from "../pages/buying/buying";
+import Buying from "../pages/buying/buying";
+import Contact from "../pages/contactPage/contact";
+import ForgotPassword from "../pages/ForgotPassword/ForgotPassword";
+import HomePage from "../pages/homePage/homePage";
+import Login from "../pages/loginPage/login";
+import ProductDetails from "../pages/productDt/ProductDetails";
+import PageProduct from "../pages/ProductPage/ProductPage";
+import Registration from "../pages/registrationPage/registration";
+import Tutorial from "../pages/tutorialPage/tutorial";
 import "./routers.scss";
 function Routers() {
   return (
