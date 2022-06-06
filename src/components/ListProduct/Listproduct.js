@@ -12,9 +12,10 @@ import { styles } from "../../common/withStyles";
 import { theme } from "../../common/Typography";
 import { productFilter$ } from "../../redux/selector";
 import useDebounce from "../../hooks/useDebounce";
-import {  requestProduct } from "../../constant/Config";
+import { requestProduct } from "../../constant/Config";
 
 function Products(props) {
+ 
   const [open, setOpen] = React.useState(false);
   const dispatch = useDispatch();
   const [posts, setPosts] = React.useState({ data: [] });
@@ -23,10 +24,10 @@ function Products(props) {
   const debounced = useDebounce(productFilter, 800);
   React.useEffect(() => {
     requestProduct({
-        method: "GET",
-        url: `?name_like=${debounced}`,
-        data: null,
-      })
+      method: "GET",
+      url: `?name_like=${debounced}`,
+      data: null,
+    })
       // axios.get(`https://js-post-api.herokuapp.com/api/products`, {
       //   params: {q:debounced},
       // })
@@ -35,7 +36,7 @@ function Products(props) {
         setPosts(res);
       })
       .catch((err) => {
-        console.log(err); 
+        console.log(err);
       });
   }, [debounced]);
   const handleClose = () => {
@@ -130,4 +131,5 @@ function Products(props) {
     </ThemeProvider>
   );
 }
-export default withStyles(styles)(Products);
+//export default  withStyles(styles)(Products)
+export default React.memo(withStyles(styles)(Products))

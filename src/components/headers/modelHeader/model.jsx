@@ -1,15 +1,15 @@
 import * as React from "react";
 import { withStyles } from "@material-ui/styles";
 import { Button, Typography } from "@mui/material";
-import LogoutIcon from '@mui/icons-material/Logout';
-import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import LogoutIcon from "@mui/icons-material/Logout";
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import Box from "@mui/material/Box";
 import Popper from "@mui/material/Popper";
 import Fade from "@mui/material/Fade";
 import { styles } from "../../../common/withStyles";
 import { useNavigate } from "react-router-dom";
 function Model(props) {
-  console.log(props);
+  console.log("model rerender");
   const navigate = useNavigate();
   const [open, setOpen] = React.useState(false);
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -27,14 +27,13 @@ function Model(props) {
     localStorage.removeItem("name");
     navigate("/login");
   };
-  const hanleBuyProduct= ()=>{
-   navigate("/buyProduct");
-
- }
+  const hanleBuyProduct = () => {
+    navigate("/buyProduct");
+  };
   return (
     <div>
       <li
-      className={props.classes.avatars}
+        className={props.classes.avatars}
         aria-describedby={id}
         type="button"
         onClick={handleClick("bottom-end")}
@@ -53,10 +52,15 @@ function Model(props) {
             <Box sx={{ border: 1, p: 1, bgcolor: "background.paper" }}>
               <Typography variant="h2"> Trang cá nhân của bạn</Typography>
               <br />
-              
-              <Button  onClick={hanleBuyProduct}>  <ShoppingCartIcon/>  giỏ hàng của bạn</Button> <br />
-              
-              <Button onClick={hanleLogOut}> <LogoutIcon />  Đăng xuất</Button>
+              <Button onClick={hanleBuyProduct}>
+                {" "}
+                <ShoppingCartIcon /> giỏ hàng của bạn
+              </Button>{" "}
+              <br />
+              <Button onClick={hanleLogOut}>
+                {" "}
+                <LogoutIcon /> Đăng xuất
+              </Button>
             </Box>
           </Fade>
         )}
@@ -64,4 +68,4 @@ function Model(props) {
     </div>
   );
 }
-export default withStyles(styles)(Model);
+export default React.memo(withStyles(styles)(Model));

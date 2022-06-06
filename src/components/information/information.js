@@ -19,12 +19,9 @@ let arr = [
     id: 2,
     img: "https://hoaphatsaigon.com/upload/quangcao/2-ghe-vip.jpg",
   },
-  
- 
 ];
 
 function Information(props) {
-
   const [state, setState] = useState(0);
 
   useEffect(() => {
@@ -55,8 +52,7 @@ function Information(props) {
     <ThemeProvider theme={theme}>
       <div className={props.classes.imgs}>
         <KeyboardDoubleArrowLeftSharpIcon
-
-          color='secondary'
+          color="secondary"
           onClick={handleChangeImageLeft}
         />
         {arr.map((prev) => {
@@ -67,11 +63,12 @@ function Information(props) {
           );
         })}
         <KeyboardDoubleArrowRightSharpIcon
-          color='secondary'
+          color="secondary"
           onClick={handleChangeImageRight}
         />
       </div>
     </ThemeProvider>
   );
 }
+
 export default withStyles(styles)(Information);

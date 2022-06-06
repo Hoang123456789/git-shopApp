@@ -1,9 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { API_URl_HEROKU } from "../../constant/Config";
-
-
-//import axios from "axios";
-
 export const todoSlice = createSlice({
   name: "products",
   initialState: {

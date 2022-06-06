@@ -87,7 +87,7 @@ function Login(props) {
           <img
             className={props.classes.imgRegistion}
             src="https://www.hoaphat.com.vn/assets/images/background1.png"
-            alt=""
+            alt=""                
           />
           <div className="login">
             <Typography className="login-h3" variant="h1">

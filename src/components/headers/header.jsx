@@ -47,21 +47,25 @@ function Header(props) {
                 </Button>
               </Link>
             </li>
-           {isLoggedIn == null &&  <li>
-              <Link to="/registration">
-                <Button color="secondary">
-                  <Typography variant="h2"> Đăng ký</Typography>
-                </Button>
-              </Link>
-            </li>}
+            {isLoggedIn == null && (
+              <li>
+                <Link to="/registration">
+                  <Button color="secondary">
+                    <Typography variant="h2"> Đăng ký</Typography>
+                  </Button>
+                </Link>
+              </li>
+            )}
 
-            {isLoggedIn == null &&  <li>
-              <Link to="/Login">
-                <Button color="secondary">
-                  <Typography variant="h2"> Đăng nhập</Typography>
-                </Button>
-              </Link>
-            </li>}         
+            {isLoggedIn == null && (
+              <li>
+                <Link to="/Login">
+                  <Button color="secondary">
+                    <Typography variant="h2"> Đăng nhập</Typography>
+                  </Button>
+                </Link>
+              </li>
+            )}
             {isLoggedIn != null && <Model />}
           </ul>
         </nav>

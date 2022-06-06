@@ -10,6 +10,7 @@ import { styles } from "../../../common/withStyles";
 import headerInputSlice from "./headerInputSlice";
 
 function HeaderInput(props) {
+  console.log("header input rerender");
   const [data, setData] = React.useState("");
 
   const dispatch = useDispatch();
@@ -42,7 +43,7 @@ function HeaderInput(props) {
             color="secondary"
             variant="contained"
           >
-            <SearchIcon />
+            <SearchIcon />            
           </Button>
         </div>
       </div>
@@ -50,4 +51,5 @@ function HeaderInput(props) {
   );
 }
 
-export default withStyles(styles)(HeaderInput);
+export default withStyles(styles)(HeaderInput)
+

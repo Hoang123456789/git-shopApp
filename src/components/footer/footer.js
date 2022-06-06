@@ -8,9 +8,11 @@ import CallIcon from "@mui/icons-material/Call";
 import ContactPhoneIcon from "@mui/icons-material/ContactPhone";
 import FileUploadIcon from "@mui/icons-material/FileUpload";
 import { blue } from "@mui/material/colors";
+import { memo } from "react";
 
 const color = blue[50];
 function Footer(props) {
+  console.log("rerender");
   const handleReturn = () => {
     window.scroll({
       top: 0,
@@ -32,9 +34,8 @@ function Footer(props) {
         />
 
         <div className={props.classes.information}>
-          <FileUploadIcon 
-           
-           color="primary"
+          <FileUploadIcon
+            color="primary"
             fontSize="large"
             onClick={handleReturn}
             className={props.classes.uploadIcon}
@@ -105,4 +106,4 @@ function Footer(props) {
     </ThemeProvider>
   );
 }
-export default withStyles(styles)(Footer);
+export default memo(withStyles(styles)(Footer));
