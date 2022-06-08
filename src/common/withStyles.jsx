@@ -44,10 +44,16 @@ export const styles = {
     justifyContent: "center",
     alignItems: "center",
     background: "#a7ffeb",
+    "@media (max-width:724px)": {
+      display: "none",
+    }
   },
 
   HeaderImage: {
     marginRight: 30,
+    "@media (max-width:724px)": {
+      display: "none",
+    },
   },
   imgs: {
     display: "flex",
@@ -150,19 +156,26 @@ export const styles = {
     width: "100px",
     height: "110px",
   },
-  product:{
-     margin:'20px 0 20px 100px'
-  },
-  productRight: {
+  product: {
+    margin: "20px 0 20px 100px",
+    display: "flex",
+    flexDirection: "row",
+  
+    "@media (max-width:724px)": {
+      display: "flex",
+     flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center",
+     
+      
     
+    },
   },
+  productRight: {},
   productImgDetail: {
     width: "80%",
-    
   },
-  productLeft: {
-    
-  },
+  productLeft: {},
   avatars: {
     display: "flex",
     flexDirection: "column",
@@ -205,10 +218,10 @@ export const styles = {
   showtabBuyButton: {
     width: 160,
   },
-  buyIng:{
-     border :' 1px solid #555',
-    width:'100%',
-    padding:'1px',
-    margin:'1px'
-  }
+  buyIng: {
+    border: " 1px solid #555",
+    width: "100%",
+    padding: "1px",
+    margin: "1px",
+  },
 };

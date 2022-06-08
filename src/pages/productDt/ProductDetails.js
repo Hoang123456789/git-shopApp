@@ -5,7 +5,7 @@ import { styles } from "../../common/withStyles";
 import { ThemeProvider } from "@mui/material/styles";
 import * as React from "react";
 import { theme } from "../../common/Typography";
-import { Button, Grid, Typography } from "@mui/material";
+import { Button, Typography } from "@mui/material";
 import { useSelector } from "react-redux";
 import { product$ } from "../../redux/selector";
 import { useNavigate } from "react-router-dom";
@@ -20,8 +20,8 @@ function ProductDetails(props) {
       <div>
         <Header />
 
-        <Grid container className={props.classes.product}>
-          <Grid item xs={4} className={props.classes.productLeft}>
+        <div container className={props.classes.product}>
+          <div item xs={4} className={props.classes.productLeft}>
             <Typography variant="h1" color="primary">
               {pRdt.name}
             </Typography>
@@ -31,8 +31,8 @@ function ProductDetails(props) {
               src={pRdt.images}
               alt="ghế nhân viên"
             />
-          </Grid>
-          <Grid item xs={3} className={props.classes.productRight}>
+          </div>
+          <div item xs={3} className={props.classes.productRight}>
             <Typography color="secondary" variant="h2">
               {" "}
               - Mã hàng: {pRdt.id} MSI{" "}
@@ -56,8 +56,8 @@ function ProductDetails(props) {
               {" "}
               Xem tất cả sản phẩm
             </Button>
-          </Grid>
-        </Grid>
+          </div>
+        </div>
 
         <Footer />
       </div>
