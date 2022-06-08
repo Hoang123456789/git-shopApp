@@ -21,7 +21,7 @@ export const theme = createTheme({
       "@media (min-width:800px)": {
         fontSize: "20px",
         fontWeight: 700,
-        margin: 3,
+        margin: 4,
       },
     },
     h2: {
@@ -44,7 +44,7 @@ export const theme = createTheme({
         margin: 3,
       },
     },
-    p: {
+        p: {
       fontSize: "9px",
       fontWeight: 500,
       margin: 5,
