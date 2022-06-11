@@ -151,10 +151,24 @@ export const styles = {
     margin: "10px",
     border: "1px solid #555   ",
     borderRadius: "5px",
+   
+  },
+  productsName:{
+     fontSize:16,
+    position: "absolute",
+    top:10,
+     color:'#673ab7',
+     width: "250px",
+     height: "110px",
+     display: "flex",
+     flexDirection: "column",
+     alignItems: "center",
+    justifyContent: "center",
   },
   productImg: {
-    width: "100px",
-    height: "110px",
+    width: "120px",
+    height: "120px",
+    marginBottom:5
   },
   product: {
     margin: "20px 0 20px 100px",
@@ -181,7 +195,7 @@ export const styles = {
     flexDirection: "column",
     alignItems: "center",
     justifyContent: "center",
-
+ 
     padding: "2px 0 2px 0",
   },
   description: {
@@ -192,9 +206,10 @@ export const styles = {
     padding: 5,
   },
   avatar: {
-    width: 35,
-    height: 33,
-    borderRadius: "50%",
+    width: 40,
+    height: 40,
+    borderRadius: "50%",margin:5,
+
   },
   catalogues: {
     display: "flex",

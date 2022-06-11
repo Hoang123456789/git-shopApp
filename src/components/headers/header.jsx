@@ -2,8 +2,6 @@ import * as React from "react";
 import "./header.css";
 
 import { Link } from "react-router-dom";
-import { ThemeProvider } from "@mui/material/styles";
-import { theme } from "../../common/Typography";
 import { Button, Typography } from "@mui/material";
 import HeaderInput from "./headerInput/headerInput";
 import { withStyles } from "@material-ui/styles";
@@ -15,7 +13,7 @@ function Header(props) {
   const isLoggedIn = localStorage.getItem("name");
 
   return (
-    <ThemeProvider theme={theme}>
+ 
       <div className="header">
         <nav>
           <ul className="demo">
@@ -71,7 +69,7 @@ function Header(props) {
         </nav>
         <HeaderInput />
       </div>
-    </ThemeProvider>
+   
   );
 }
 export default withStyles(styles)(Header);

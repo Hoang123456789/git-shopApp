@@ -9,7 +9,8 @@ import Fade from "@mui/material/Fade";
 import { styles } from "../../../common/withStyles";
 import { useNavigate } from "react-router-dom";
 function Model(props) {
-  console.log("model rerender");
+  const isLoggedIn = localStorage.getItem("name");
+
   const navigate = useNavigate();
   const [open, setOpen] = React.useState(false);
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -30,6 +31,11 @@ function Model(props) {
   const hanleBuyProduct = () => {
     navigate("/buyProduct");
   };
+  const hanlePersonalPage = () => {
+    console.log(isLoggedIn);
+
+    navigate("/personalPage");
+  };
   return (
     <div>
       <li
@@ -41,16 +47,20 @@ function Model(props) {
         <img
           className={props.classes.avatar}
           src="https://media3.scdn.vn/img4/2021/06_28/4Rjoo4tDlgdQcTrK7HXH.jpg"
+          //  src="/static/media/avatar4.d0ebc5b5.png"
           alt=""
         />
-        <Typography variant="poster">{localStorage.getItem("name")}</Typography>
+        <Typography variant="poster"> User Name</Typography>
       </li>
 
       <Popper open={open} anchorEl={anchorEl} placement={placement} transition>
         {({ TransitionProps }) => (
           <Fade {...TransitionProps} timeout={350}>
             <Box sx={{ border: 1, p: 1, bgcolor: "background.paper" }}>
-              <Typography variant="h2"> Trang cá nhân của bạn</Typography>
+              <Typography variant="h2" onClick={hanlePersonalPage}>
+                {" "}
+                Trang cá nhân của bạn
+              </Typography>
               <br />
               <Button onClick={hanleBuyProduct}>
                 {" "}

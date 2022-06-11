@@ -15,7 +15,6 @@ import useDebounce from "../../hooks/useDebounce";
 import { requestProduct } from "../../constant/Config";
 
 function Products(props) {
- 
   const [open, setOpen] = React.useState(false);
   const dispatch = useDispatch();
   const [posts, setPosts] = React.useState({ data: [] });
@@ -86,14 +85,19 @@ function Products(props) {
         {posts.data.map((post) => {
           return (
             <div key={post.id} className={props.classes.products}>
-              <h3>{post.name}</h3>
+              <h3 className={props.classes.productsName}>{post.name}</h3>
 
               <img
                 className={props.classes.productImg}
                 src={post.images[0]}
                 alt="ghế nhân viên"
               />
-              <p> MSP:{post.id}</p>
+
+              <Typography variant="h3" color="secondary">
+                {" "}
+                MSP:  {post.id}
+              </Typography>
+
               <Typography variant="poster">
                 Giá: {post.salePrice} vnđ{" "}
               </Typography>
@@ -131,5 +135,5 @@ function Products(props) {
     </ThemeProvider>
   );
 }
-//export default  withStyles(styles)(Products)
-export default React.memo(withStyles(styles)(Products))
+
+export default React.memo(withStyles(styles)(Products));

@@ -5,6 +5,8 @@ import Contact from "../pages/contactPage/contact";
 import ForgotPassword from "../pages/ForgotPassword/ForgotPassword";
 import HomePage from "../pages/homePage/homePage";
 import Login from "../pages/loginPage/login";
+
+import PersonalPage from "../pages/personalPage/component/index.tsx";
 import ProductDetails from "../pages/productDt/ProductDetails";
 import PageProduct from "../pages/ProductPage/ProductPage";
 import Registration from "../pages/registrationPage/registration";
@@ -24,6 +26,8 @@ function Routers() {
         <Route path="/Login" element={<Login />}></Route>
         <Route path="/ForgotPassword" element={<ForgotPassword />}></Route>
         <Route path="/buyProduct" element={<BuyProduct />}></Route>
+        <Route path="/personalPage" element={<PersonalPage />}></Route>
+        
       </Routes>
     </div>
   );
