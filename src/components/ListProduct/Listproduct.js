@@ -6,13 +6,13 @@ import { Button } from "@material-ui/core";
 import { useDispatch, useSelector } from "react-redux";
 import { Dialog, DialogTitle, Typography } from "@mui/material";
 import HighlightOffIcon from "@mui/icons-material/HighlightOff";
-
 import { getProducts } from "./ListProductSlice";
 import { styles } from "../../common/withStyles";
 import { theme } from "../../common/Typography";
 import { productFilter$ } from "../../redux/selector";
 import useDebounce from "../../hooks/useDebounce";
 import { requestProduct } from "../../constant/Config";
+import CircularColor from "../loadding/loadding";
 
 function Products(props) {
   const [open, setOpen] = React.useState(false);
@@ -21,6 +21,7 @@ function Products(props) {
   const navigate = useNavigate();
   const productFilter = useSelector(productFilter$);
   const debounced = useDebounce(productFilter, 800);
+  const [loadding, setLoadding] = React.useState(true);
   React.useEffect(() => {
     requestProduct({
       method: "GET",
@@ -33,6 +34,7 @@ function Products(props) {
       .then((res) => {
         console.log(res);
         setPosts(res);
+        setLoadding(false);
       })
       .catch((err) => {
         console.log(err);
@@ -82,55 +84,59 @@ function Products(props) {
         </Dialog>
       </div>
       <div className={props.classes.productItem}>
-        {posts.data.map((post) => {
-          return (
-            <div key={post.id} className={props.classes.products}>
-              <h3 className={props.classes.productsName}>{post.name}</h3>
+        {loadding ? (
+          <CircularColor />
+        ) : (
+          posts.data.map((post) => {
+            return (
+              <div key={post.id} className={props.classes.products}>
+                <h3 className={props.classes.productsName}>{post.name}</h3>
 
-              <img
-                className={props.classes.productImg}
-                src={post.images[0]}
-                alt="ghế nhân viên"
-              />
+                <img
+                  className={props.classes.productImg}
+                  src={post.images[0]}
+                  alt="ghế nhân viên"
+                />
 
-              <Typography variant="h3" color="secondary">
-                {" "}
-                MSP:  {post.id}
-              </Typography>
+                <Typography variant="h3" color="secondary">
+                  {" "}
+                  MSP: {post.id}
+                </Typography>
 
-              <Typography variant="poster">
-                Giá: {post.salePrice} vnđ{" "}
-              </Typography>
+                <Typography variant="poster">
+                  Giá: {post.salePrice} vnđ{" "}
+                </Typography>
 
-              <Typography
-                className={props.classes.Details}
-                onClick={() => {
-                  window.scroll({
-                    top: 0,
-                    behavior: "smooth",
-                  });
-                  console.log(post.id);
-                  navigate("/productDetails");
-                  dispatch(getProducts({ id: post.id }));
-                }}
-                variant="poster"
-              >
-                Xem chi tiết
-              </Typography>
-              <Button
-                onClick={() => {
-                  handleClickOpen();
-                  dispatch(getProducts({ id: post.id }));
-                }}
-                variant="contained"
-                className={props.classes.cart}
-              >
-                Mua ngay
-              </Button>
-              <Outlet />
-            </div>
-          );
-        })}
+                <Typography
+                  className={props.classes.Details}
+                  onClick={() => {
+                    window.scroll({
+                      top: 0,
+                      behavior: "smooth",
+                    });
+                    console.log(post.id);
+                    navigate("/productDetails");
+                    dispatch(getProducts({ id: post.id }));
+                  }}
+                  variant="poster"
+                >
+                  Xem chi tiết
+                </Typography>
+                <Button
+                  onClick={() => {
+                    handleClickOpen();
+                    dispatch(getProducts({ id: post.id }));
+                  }}
+                  variant="contained"
+                  className={props.classes.cart}
+                >
+                  Mua ngay
+                </Button>
+                <Outlet />
+              </div>
+            );
+          })
+        )}
       </div>
     </ThemeProvider>
   );

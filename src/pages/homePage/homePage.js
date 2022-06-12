@@ -2,7 +2,10 @@ import { Navigate } from "react-router-dom";
 import Footer from "../../components/footer/footer";
 import Header from "../../components/headers/header";
 import Information from "../../components/information/information";
-import ListProduct from "../../components/ListProduct/Listproduct";
+import Listproduct from "../../components/ListProduct/Listproduct";
+
+
+
 
 
 function HomePage() {
@@ -16,7 +19,7 @@ function HomePage() {
    
       <Header />
       <Information />
-      <ListProduct />
+      <Listproduct />
       <Footer />
     </div>
   );

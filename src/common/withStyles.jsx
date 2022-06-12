@@ -164,6 +164,7 @@ export const styles = {
      flexDirection: "column",
      alignItems: "center",
     justifyContent: "center",
+    paddingBottom:20
   },
   productImg: {
     width: "120px",
